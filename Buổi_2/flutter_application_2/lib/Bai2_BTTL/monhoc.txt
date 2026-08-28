@@ -1,0 +1,5 @@
+LT#MH001#Lap trinh Java#3#8#9
+TH#MH002#Thuc hanh Java#2#7#8#9
+DA#MH003#Do an Java#4#8#9
+LT#MH004#Co so du lieu#3#7#8
+TH#MH005#Thuc hanh C#2#9#8#7
