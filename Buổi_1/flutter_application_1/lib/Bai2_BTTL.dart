@@ -1,32 +1,45 @@
 import 'dart:io';
 
-void main() {
-    stdout.write('Nhập số nguyên dương > 10: ');
-    int n = int.parse(stdin.readLineSync()!);
+void main()
+{
+  stdout.write("Nhap 1 so nguyen duong: ");
+  int a = int.parse(stdin.readLineSync()!);
 
-    int temp = n;
-    int soChuSo = 0;
-    int tong = 0;
-    bool coSoLe = false;
+  String n = a.toString();
+  int sl =0;
+  for(int i = 0; i < n.length; i++)
+  {
+    sl++;
+  }
+  print("So luong chu so cua $a là: $sl");
 
-    while (temp > 0) {
-      int chuSo = temp % 10;
-      tong += chuSo;
+  int b = a;
+  int tong = 0;
+  while(b > 0)
+  {
+    int c = b % 10;
+    tong += c;
+    b = b ~/ 10;
+  }
+  print("Tong cac so la: $tong");
 
-      if (chuSo % 2 != 0) {
-        coSoLe = true;
-      }
-
-      soChuSo++;
-      temp ~/= 10;
+  int t = a;
+  int l =0;
+  while(t > 0)
+  {
+    int c = t % 10;
+    if (c % 2 != 0){
+      l++;
     }
+    t = t ~/ 10;
+  }
 
-    print('Số có $soChuSo chữ số');
-    print('Tổng các chữ số: $tong');
-
-    if (coSoLe) {
-      print('Số có chứa chữ số lẻ');
-    } else {
-      print('Số không chứa chữ số lẻ');
-    }
+  if(l > 0)
+  {
+    print("So luong chu so le la: $l");
+  }
+  else
+  {
+    print("Khong co chu so le");
+  }
 }

@@ -1,23 +1,31 @@
 import 'dart:io';
 
-void main() {
-    stdout.write('Nhập số que kem cần mua: ');
-    int soLuong = int.parse(stdin.readLineSync()!);
+void main(){
+  int a;
+  double b;
 
-    stdout.write('Nhập giá tiền một que kem: ');
-    double gia = double.parse(stdin.readLineSync()!);
-
-    double tongTien = soLuong * gia;
-    double giam = 0;
-
-    if (soLuong > 10) {
-      giam = 0.10;
-    } else if (soLuong >= 5 && soLuong <= 10) {
-      giam = 0.05;
+  do
+  {
+    stdout.write("Nhap so luong que kem: ");
+    a = int.parse(stdin.readLineSync()!);
+    if(a <= 0){
+      print("Nhap lai so luong kem > 0");
     }
+  } while (a <= 0);
 
-    double tienPhaiTra = tongTien * (1 - giam);
+  stdout.write("Nhap gia tien que kem: ");
+  b = double.parse(stdin.readLineSync()!);
 
-    print('Tổng tiền: $tongTien');
-    print('Tiền phải trả: $tienPhaiTra');
+  double tongtien = a * b;
+
+  if(a > 10)
+  {
+    tongtien = tongtien - (tongtien * 0.1);
+  }
+  if(a >= 5 && a <= 10)
+  {
+    tongtien = tongtien - (tongtien * 0.05);
+  }
+
+  print("Tong tien phai tra: $tongtien");
 }

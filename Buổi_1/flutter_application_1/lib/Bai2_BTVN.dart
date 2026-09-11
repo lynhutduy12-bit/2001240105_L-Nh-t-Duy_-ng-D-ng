@@ -1,46 +1,50 @@
 import 'dart:io';
 
-void main() {
-    stdout.write('Nhập chuỗi: ');
-    String chuoi = stdin.readLineSync()!;
+void main()
+{
+  stdout.write("nhap chuoi: ");
+  String s = stdin.readLineSync()!;
 
-    print('Chuỗi vừa nhập: $chuoi');
+  int demna = 0;
+  for(int i =0; i < s.length; i++)
+  {
+     if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' ||
+       s[i] == 'o' || s[i] == 'u')
+       {
+        demna++;
+       }
+  }
+  print("So nguyen am trong chuoi la: $demna");
 
-    int demNguyenAm = 0;
-    String nguyenAm = 'aeiouAEIOU';
-
-    for (int i = 0; i < chuoi.length; i++) {
-      if (nguyenAm.contains(chuoi[i])) {
-        demNguyenAm++;
-      }
+  int dem = 0;
+  for(int i =0; i < s.length; i++)
+  {
+    if(s[i] != " " && (i == 0 || s[i - 1] == " "))
+    {
+      dem++;
     }
+  }
+  print("So tu la: $dem");
 
-    print('Số ký tự nguyên âm: $demNguyenAm');
-
-    List<String> tu = chuoi.trim().split(RegExp(r'\s+'));
-
-    if (chuoi.trim().isEmpty) {
-      print('Số từ: 0');
-    } else {
-      print('Số từ: ${tu.length}');
+  int ktr = 0;
+  for(int i = 0; i < s.length; i++)
+  {
+    if(s[i] != s[s.length - i - 1])
+    {
+      ktr++;
     }
+  }
 
-    String chuoiKhongKhoangTrang = chuoi.replaceAll(RegExp(r'\s+'), '');
+  if(ktr == 0)
+  {
+    print("Chuoi doi xung");
+  }
+  else
+  {
+    print("Chuoi khong doi xung");
+  }
 
-    String daoNguoc = chuoiKhongKhoangTrang.split('').reversed.join('');
-
-    if (chuoiKhongKhoangTrang.toLowerCase() ==
-        daoNguoc.toLowerCase()) {
-      print('Chuỗi đối xứng');
-    } else {
-      print('Chuỗi không đối xứng');
-    }
-
-    List<String> tuDao = List.from(tu.reversed);
-
-    if (chuoi.trim().isEmpty) {
-      print('Chuỗi sau khi đảo từ:');
-    } else {
-      print('Chuỗi sau khi đảo từ: ${tuDao.join(' ')}');
-    }
+  String b = s;
+  s = b.split('').reversed.join();
+  print("Chuoi sau khi dao: $s");
 }

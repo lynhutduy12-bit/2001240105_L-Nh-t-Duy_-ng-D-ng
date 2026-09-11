@@ -1,97 +1,176 @@
 import 'dart:io';
 import 'dart:math';
 
-void main() {
-  Random random = Random();
-
-  stdout.write('Nhập số phần tử: ');
-  int n = int.parse(stdin.readLineSync()!);
-
-  List<int> ds = List.generate(n, (_) => random.nextInt(96) + 5);
-
-  print('Danh sách: $ds');
-
-  int tongLe = 0;
-  int demLe = 0;
-
-  for (int x in ds) {
-    if (x % 2 != 0) {
-      tongLe += x;
-      demLe++;
+bool ktrdoixung(List<int> a)
+{
+  for(int i = 0; i < a.length; i++)
+  {
+    if(a[i] != a[a.length - i - 1])
+    {
+      return false;
     }
   }
+  return true;
+}
 
-  if (demLe == 0) {
-    print('Danh sách không có số lẻ.');
-  } else {
-    double tbc = tongLe / demLe;
-    print('Trung bình cộng các số lẻ: $tbc');
-  }
-
-  bool doiXung = true;
-
-  for (int i = 0; i < ds.length ~/ 2; i++) {
-    if (ds[i] != ds[ds.length - 1 - i]) {
-      doiXung = false;
-      break;
+bool ktrtngdan(List<int> a) {
+  int next = 0;
+  for(int i =0; i < a.length - 1; i++)
+  {
+    next = a[i+1];
+    if(a[i] > next)
+    {
+      return false;
     }
   }
+  return true;
+}
 
-  if (doiXung) {
-    print('Danh sách đối xứng');
-  } else {
-    print('Danh sách không đối xứng');
-  }
-
-  bool tangDan = true;
-
-  for (int i = 0; i < ds.length - 1; i++) {
-    if (ds[i] > ds[i + 1]) {
-      tangDan = false;
-      break;
+int timmax(List<int> a)
+{
+  int max = 0;
+  for(int i = 0; i < a.length; i++)
+  {
+    if(a[i] > max)
+    {
+      max = a[i];
     }
   }
+  return max;
+}
 
-  if (tangDan) {
-    print('Danh sách được sắp xếp tăng dần');
-  } else {
-    print('Danh sách không được sắp xếp tăng dần');
-  }
-
-  int max = ds[0];
-
-  for (int x in ds) {
-    if (x > max) {
-      max = x;
-    }
-  }
-
-  print('Phần tử lớn nhất: $max');
-
-  int? maxChan;
-
-  for (int x in ds) {
-    if (x % 2 == 0) {
-      if (maxChan == null || x > maxChan) {
-        maxChan = x;
+int timchanmax(List<int> a)
+{
+    int dem = 0;
+    int max = 0;
+      for(int i =0; i < a.length; i++){
+        if(a[i] % 2 == 0)
+        {
+          max = a[i];
+          dem++;
+          break;
+        }
       }
+      for(int i =0; i < a.length; i++){
+        if(a[i] % 2 == 0 && a[i] > max)
+        {
+          max = a[i];
+          dem++;
+        }
+      }
+      if(dem == 0)
+      {
+        return 0;
+      }
+      else
+      {
+        return max;
+      }
+}
+
+void timxoa(List<int> a)
+{
+  stdout.write("Nhap so can tim va xoa: ");
+  int x = int.parse(stdin.readLineSync()!);
+
+  int dem = 0;
+  for(int i = 0; i < a.length; i++)
+  {
+    if(a[i] == x)
+    {
+      a.removeAt(i);
+      dem ++;
+      print("Da xoa gia tri $x tai vi tri a[$i]");
+    }
+  }
+  if(dem == 0)
+  {
+    print("Khong co gia tri $x");
+  }
+  else{
+    stdout.write("Cac phan tu trong danh sach sau khi xoa la: ");
+    for(int i =0; i < a.length; i++)
+    {
+      stdout.write(a[i]);
+      stdout.write(" ");
+    }
+    print(" ");
+  }
+}
+
+void main()
+{
+  List<int> a = [];
+  int n;
+
+  stdout.write("Nhap so luong phan tu: ");
+  n = int.parse(stdin.readLineSync()!);
+
+  for(int i = 0; i < n; i++)
+  {
+    a.add(Random().nextInt(96) + 5);
+  }
+  
+  int tongle = 0;
+  double tbc = 0;
+  int dem = 0;
+  for(int i = 0; i< n; i++)
+  {
+    if(a[i] % 2 != 0)
+    {
+      tongle += a[i];
+      dem++;
     }
   }
 
-  if (maxChan == null) {
-    print('Danh sách không có số chẵn.');
-  } else {
-    print('Số chẵn lớn nhất: $maxChan');
+  stdout.write("Cac phan tu trong danh sach la: ");
+  for(int i =0; i < n; i++)
+  {
+    stdout.write(a[i]);
+    stdout.write(" ");
+  }
+  print(" ");
+
+  tbc = tongle / dem;
+
+  if(dem == 0)
+  {
+    print("Danh sach khong co so le");
+  }
+  else
+  {
+    print("Trung binh cong cac so le trong danh sach la: $tbc");
   }
 
-  stdout.write('Nhập giá trị cần tìm: ');
-  int giaTri = int.parse(stdin.readLineSync()!);
-
-  if (!ds.contains(giaTri)) {
-    print('Không tìm thấy.');
-  } else {
-    ds.removeWhere((x) => x == giaTri);
-    print('Đã xóa các phần tử có giá trị $giaTri');
-    print('Danh sách sau khi xóa: $ds');
+  if(ktrdoixung(a) == true)
+  {
+    print("Mang doi xung");
   }
+  else
+  {
+    print("Mang khong doi xung");
+  }
+
+  if(ktrtngdan(a) == true)
+  {
+    print("Mang tang dan");
+  }
+  else{
+    print("Mang khong tang dan");
+  }
+  
+  int max = timmax(a);
+  print("So lon nhat trong danh sach la: $max");
+
+  if(timchanmax(a) == 0)
+  {
+    print("Danh sach khong co so chan");
+  }
+  else
+  {
+    int chanmax = timchanmax(a);
+    print("So chan lon nhat la: $chanmax");
+  }
+   
+   timxoa(a);
 }

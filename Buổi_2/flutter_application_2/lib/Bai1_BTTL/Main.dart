@@ -1,23 +1,23 @@
 import 'DanhSachPhong.dart';
 
 void main() {
-  DanhSachPhong ds = DanhSachPhong();
+  Danhsachphong a = Danhsachphong();
 
-  ds.docFile('lib/Bai1_BTTL/phongthue.txt');
-
-  print('DANH SACH PHONG THUE');
-  ds.xuat();
-
-  print('\nPHONG CO SO NGUOI > 2');
-  ds.xuatPhongNhieuHon2Nguoi();
-
-  print('\nTONG TIEN PHONG: ${ds.tinhTongTien()}');
-
-  ds.sapXepGiamDanSoDien();
-
-  print('\nDANH SACH GIAM DAN THEO SO DIEN');
-  ds.xuat();
-
-  print('\nDANH SACH PHONG LOAI A');
-  ds.xuatPhongA();
+  a.docfile();
+  print("");
+  a.hienthi();
+  print("");
+  a.xuatlonhon2();
+  print("");
+  print("Tong tien tat ca cac phong la: ${a.tinhtongtienthu()}");
+  print("");
+  print("Danh sach phong sau khi sap xep: ");
+  a.sapxepgiamdan();
+  a.hienthi();
+  print("");
+  print("Danh sach phong A: ");
+  a.inloaia();
+  print("Danh sach phong sau khi sap xep: ");
+  a.sapxeptangdan();
+  a.hienthi();
 }

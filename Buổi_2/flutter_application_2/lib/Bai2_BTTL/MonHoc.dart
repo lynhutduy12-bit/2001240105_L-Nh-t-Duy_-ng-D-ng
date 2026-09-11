@@ -1,31 +1,65 @@
-abstract class MonHoc {
-  String maMon;
-  String tenMon;
-  int soTinChi;
+import 'dart:io';
 
-  MonHoc({
-    this.maMon = '',
-    this.tenMon = '',
-    this.soTinChi = 0,
-  });
+class MonHoc
+{
+  String _mamh = "";
 
-  double tinhDTB();
+  get MaMH => _mamh;
 
-  String quyDoiDiem() {
-    double diem = tinhDTB();
-
-    if (diem >= 8.5) {
-      return 'A';
-    } else if (diem >= 7.0) {
-      return 'B';
-    } else if (diem >= 5.5) {
-      return 'C';
-    } else if (diem >= 4.0) {
-      return 'D';
-    } else {
-      return 'F';
-    }
+  set MaMH (String a)
+  {
+    _mamh = a;
   }
 
-  void xuat();
+  String _tenmh = "";
+
+  get TenMH => _tenmh;
+
+  set TenMH (String a)
+  {
+    _tenmh = a;
+  }
+
+  int _sotc = 0;
+
+  get SoTC => _sotc;
+
+  set SoTC (int a)
+  {
+    _sotc = a;
+  }
+
+  MonHoc();
+
+  MonHoc.full(String ma, String ten, int tc)
+  {
+    _mamh = ma;
+    _tenmh = ten;
+    _sotc = tc;
+  }
+
+  double DiemTB()
+  {
+    return 0;
+  }
+
+  void nhap()
+  {
+    stdout.write("Nhap ma mon hoc: ");
+    String a = stdin.readLineSync()!;
+    MaMH(a);
+
+    stdout.write("Nhap ten mon hoc: ");
+    String b = stdin.readLineSync()!;
+    TenMH(b);
+
+    stdout.write("Nhap so tin chi: ");
+    int c =int.parse(stdin.readLineSync()!);
+    SoTC(c);
+  }
+
+  void hienthi()
+  {
+    print("Ma mon hoc: $MaMH - Ten mon hoc; $TenMH - So tin chi: $SoTC - Diem trung binh: ${DiemTB()}");
+  }
 }

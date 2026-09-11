@@ -1,85 +1,91 @@
 import 'dart:io';
-import 'phong.dart';
-import 'phongA.dart';
-import 'phongB.dart';
 
-class DanhSachPhong {
-  List<Phong> ds = [];
+import 'Phong.dart';
+import 'PhongA.dart';
+import 'PhongB.dart';
 
-  void them(Phong p) {
-    ds.add(p);
-  }
+class Danhsachphong {
+  List<Phong> phong = [];
 
-  void docFile(String tenFile) {
-    List<String> lines = File(tenFile).readAsLinesSync();
+  void docfile() {
+    List<String> lines =
+        File("lib/Bai1_BTTL/phongthue.txt").readAsLinesSync();
 
-    for (String line in lines) {
-      if (line.trim().isEmpty) {
-        continue;
-      }
+    for (var line in lines) {
+      List<String> data = line.split("#");
 
-      List<String> a = line.split('#');
-
-      if (a[0].startsWith('A')) {
-        PhongA p = PhongA(
-          maPhong: a[0],
-          soNguoi: int.parse(a[1]),
-          soDien: double.parse(a[2]),
-          soNuoc: double.parse(a[3]),
-          soNguoiThan: int.parse(a[4]),
+      if (data[0].startsWith("A")) {
+        PhongA a = PhongA.full(
+          data[0],
+          int.parse(data[1]),
+          int.parse(data[2]),
+          int.parse(data[3]),
+          int.parse(data[4]),
         );
 
-        ds.add(p);
-      } else if (a[0].startsWith('B')) {
-        PhongB p = PhongB(
-          maPhong: a[0],
-          soNguoi: int.parse(a[1]),
-          soDien: double.parse(a[2]),
-          soNuoc: double.parse(a[3]),
-          giatui: double.parse(a[4]),
-          soMay: int.parse(a[5]),
+        phong.add(a);
+      }
+
+      if (data[0].startsWith("B")) {
+        PhongB b = PhongB.full(
+          data[0],
+          int.parse(data[1]),
+          int.parse(data[2]),
+          int.parse(data[3]),
+          int.parse(data[4]),
+          int.parse(data[5]),
         );
 
-        ds.add(p);
+        phong.add(b);
       }
     }
   }
 
-  void xuat() {
-    for (Phong p in ds) {
-      p.xuat();
+  void hienthi() {
+    print("So phong da them: ${phong.length}");
+    for (var i in phong) {
+      i.hienThi();
     }
   }
 
-  void xuatPhongNhieuHon2Nguoi() {
-    for (Phong p in ds) {
-      if (p.soNguoi > 2) {
-        p.xuat();
+  void xuatlonhon2() {
+    print("Phong co so nguoi thue lon hon 2: ");
+    for (var i in phong) {
+      if(i.SoNguoi > 2){
+        i.hienThi();
       }
     }
   }
 
-  double tinhTongTien() {
+  double tinhtongtienthu() {
     double tong = 0;
-
-    for (Phong p in ds) {
-      tong += p.tinhTienPhong();
+    for (var i in phong) {
+      tong += i.Tienphong();
     }
-
     return tong;
   }
 
-  void sapXepGiamDanSoDien() {
-    ds.sort((Phong a, Phong b) {
-      return b.soDien.compareTo(a.soDien);
+  void sapxepgiamdan() {
+    phong.sort((a, b) {
+      return b.Tienphong().compareTo(a.Tienphong());
     });
   }
 
-  void xuatPhongA() {
-    for (Phong p in ds) {
-      if (p is PhongA) {
-        p.xuat();
+  void inloaia()
+  {
+    for(var i in phong)
+    {
+      if(i.Ma.startsWith("A"))
+      {
+        i.hienThi();
       }
     }
+  }
+
+  void sapxeptangdan()
+  {
+    phong.sort((a, b) {
+      return a.Tienphong().compareTo(b.Tienphong());
+      });
   }
 }

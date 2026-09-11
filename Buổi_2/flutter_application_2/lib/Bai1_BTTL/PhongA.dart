@@ -1,33 +1,33 @@
-import 'phong.dart';
+import 'Phong.dart';
 
-class PhongA extends Phong {
-  int soNguoiThan;
+class PhongA extends Phong
+{
+  int _songuoithan = 0;
 
-  PhongA({
-    String maPhong = '',
-    int soNguoi = 0,
-    double soDien = 0,
-    double soNuoc = 0,
-    this.soNguoiThan = 0,
-  }) : super(
-          maPhong: maPhong,
-          soNguoi: soNguoi,
-          soDien: soDien,
-          soNuoc: soNuoc,
-        );
+  get SoNguoithan => _songuoithan;
 
-  @override
-  double tinhTienPhong() {
-    return 1400 + 2 * soDien + 8 * soNuoc + 50 * soNguoiThan;
+  set Songuoithan (int a)
+  {
+    _songuoithan = a;
+  }
+
+  PhongA();
+
+  PhongA.full(String ma, int sn, int dien, int nuoc, int songuoio): super.full(ma, sn, dien, nuoc)
+  { 
+    _songuoithan = songuoio;
   }
 
   @override
-  void xuat() {
-    print(
-      'Phong A | Ma: $maPhong | So nguoi: $soNguoi | '
-      'So dien: $soDien | So nuoc: $soNuoc | '
-      'So nguoi than: $soNguoiThan | '
-      'Tien phong: ${tinhTienPhong()}',
-    );
+  double Tienphong()
+  {
+    return (1400 + 2*SoDien + 8*SoNuoc + 50*SoNguoithan).toDouble();
+  }
+
+  @override
+  void hienThi()
+  {
+    super.hienThi();
+    print("So nguoi than da tham va o lai qua dem: $SoNguoithan");
   }
 }

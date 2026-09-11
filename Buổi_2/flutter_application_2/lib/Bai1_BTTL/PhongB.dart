@@ -1,35 +1,43 @@
-import 'phong.dart';
+import 'Phong.dart';
 
-class PhongB extends Phong {
-  double giatui;
-  int soMay;
+class PhongB extends Phong
+{
+  int _khoiluonggiat = 0;
 
-  PhongB({
-    String maPhong = '',
-    int soNguoi = 0,
-    double soDien = 0,
-    double soNuoc = 0,
-    this.giatui = 0,
-    this.soMay = 0,
-  }) : super(
-          maPhong: maPhong,
-          soNguoi: soNguoi,
-          soDien: soDien,
-          soNuoc: soNuoc,
-        );
+  get KhoiLuongGiat => _khoiluonggiat;
 
-  @override
-  double tinhTienPhong() {
-    return 2000 + 2 * soDien + 8 * soNuoc + giatui * 5 + soMay * 100;
+  set khoiluongGiat (int a)
+  {
+    _khoiluonggiat = a;
+  }
+
+  int _somay = 0;
+
+  get SoMay => _somay;
+
+  set SoMay (int a)
+  {
+    _somay = a;
+  }
+
+  PhongB();
+
+  PhongB.full(String ma, int sn, int dien, int nuoc, int kl, int may): super.full(ma, sn, dien, nuoc)
+  {
+    _khoiluonggiat = kl;
+    _somay = may;
   }
 
   @override
-  void xuat() {
-    print(
-      'Phong B | Ma: $maPhong | So nguoi: $soNguoi | '
-      'So dien: $soDien | So nuoc: $soNuoc | '
-      'Giat ui: $giatui | So may: $soMay | '
-      'Tien phong: ${tinhTienPhong()}',
-    );
+  double Tienphong()
+  {
+    return (2000 + 2*SoDien + 8*SoNuoc + KhoiLuongGiat+5 + SoMay+100).toDouble();
+  }
+
+  @override
+  void hienThi()
+  {
+    super.hienThi();
+    print("Khoi luong giat: $KhoiLuongGiat - so may: $SoMay"); 
   }
 }

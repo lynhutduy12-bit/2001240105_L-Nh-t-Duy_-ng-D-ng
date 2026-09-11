@@ -1,32 +1,57 @@
 import 'MonHoc.dart';
+import 'dart:io';
 
-class DoAn extends MonHoc {
-  double diemGVHD;
-  double diemGVPB;
+class DoAn extends MonHoc
+{
+    double _diemgvhd = 0;
 
-  DoAn({
-    String maMon = '',
-    String tenMon = '',
-    int soTinChi = 0,
-    this.diemGVHD = 0,
-    this.diemGVPB = 0,
-  }) : super(
-          maMon: maMon,
-          tenMon: tenMon,
-          soTinChi: soTinChi,
-        );
+    get DiemGVHD => _diemgvhd;
 
-  @override
-  double tinhDTB() {
-    return (diemGVHD + diemGVPB) / 2;
+    set DiemGVHD (double a)
+    {
+        _diemgvhd = a;
+    }
+
+    double _diemgvpb = 0;
+
+    get DiemGVPB => _diemgvpb;
+
+    set DiemGVPB (double a)
+    {
+        _diemgvpb = a;
+    }
+
+    DoAn();
+
+    DoAn.full(String ma, String ten, int tc, double d1, double d2): super.full(ma, ten, tc)
+    {
+        _diemgvhd = d1;
+        _diemgvpb = d2;
+    }
+
+    @override
+    double DiemTB() {
+        return (DiemGVHD + DiemGVPB)/2;
+    }   
+
+     @override
+  void nhap() {
+    super.nhap();
+
+    stdout.write("Nhap diem giao vien huong dan: ");
+    double a = double.parse(stdin.readLineSync()!);
+    DiemGVHD(a);
+
+    stdout.write("Nhap diem giao vien phan bien: ");
+    double b = double.parse(stdin.readLineSync()!);
+    DiemGVPB(b);
+
   }
+    
 
-  @override
-  void xuat() {
-    print(
-      'Do an | $maMon | $tenMon | $soTinChi TC | '
-      'DTB: ${tinhDTB().toStringAsFixed(2)} | '
-      'Diem chu: ${quyDoiDiem()}',
-    );
-  }
+    @override
+    void hienthi() {
+        super.hienthi();
+        print("Diem giao vien huong dan: $DiemGVHD - Diem giao vien phan bien: $DiemGVPB");
+    }
 }
